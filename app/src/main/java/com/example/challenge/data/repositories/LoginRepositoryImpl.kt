@@ -6,14 +6,10 @@ import com.example.challenge.data.models.SuccessResponse
 import com.example.challenge.data.source.network.ApiService
 
 class LoginRepositoryImpl : LoginRepository {
-
     private val apiService = ApiService()
 
     override fun login(
         username: String,
-        password: String
-    ): Either<SuccessResponse<Int?>, ErrorType> {
-        return apiService.login(username, password)
-    }
-
+        password: String,
+    ): Either<SuccessResponse<Int?>, ErrorType> = apiService.login(username, password)
 }

@@ -12,9 +12,7 @@ import com.example.challenge.ui.screen.LoginForm
 import org.junit.Rule
 import org.junit.Test
 
-
 class LoginScreenKtTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -23,16 +21,17 @@ class LoginScreenKtTest {
         lateinit var loginUIState: MutableState<LoginUIState>
 
         composeTestRule.setContent {
-            loginUIState = remember {
-                mutableStateOf(
-                    LoginUIState(
-                        onLogin = {
-                            loginUIState.value =
-                                loginUIState.value.copy(errorUsername = "Username is required")
-                        }
+            loginUIState =
+                remember {
+                    mutableStateOf(
+                        LoginUIState(
+                            onLogin = {
+                                loginUIState.value =
+                                    loginUIState.value.copy(errorUsername = "Username is required")
+                            },
+                        ),
                     )
-                )
-            }
+                }
 
             LoginForm(loginUIState = loginUIState.value)
         }
@@ -41,9 +40,9 @@ class LoginScreenKtTest {
 
         composeTestRule.waitForIdle()
 
-        composeTestRule.onNodeWithTag("UsernameErrorText")
+        composeTestRule
+            .onNodeWithTag("UsernameErrorText")
             .assertExists()
             .assertTextEquals("Username is required")
     }
-
 }

@@ -10,5 +10,5 @@ data class LoginUIState(
     val onChangeUsername: (String) -> Unit = {},
     val onChangePassword: (String) -> Unit = {},
     val onLogin: () -> Unit = {},
-    val result: String = ""
+    val result: String = "",
 )

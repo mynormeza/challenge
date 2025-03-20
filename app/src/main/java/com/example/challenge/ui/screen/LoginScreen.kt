@@ -37,13 +37,13 @@ fun LoginScreen(loginUIState: LoginUIState) {
         if (loginUIState.result.isNotEmpty()) {
             snackBarHostState.showSnackbar(
                 message = loginUIState.result,
-                duration = SnackbarDuration.Long
+                duration = SnackbarDuration.Long,
             )
         }
     }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(hostState = snackBarHostState) }
+        snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
     ) {
         LoginScreenContent(it, loginUIState)
     }
@@ -53,14 +53,14 @@ fun LoginScreen(loginUIState: LoginUIState) {
 @Preview(showBackground = true)
 private fun LoginScreenContent(
     paddingValues: PaddingValues = PaddingValues(0.dp),
-    loginUIState: LoginUIState = LoginUIState()
+    loginUIState: LoginUIState = LoginUIState(),
 ) {
     Box(
         Modifier
             .fillMaxSize()
             .background(Color.White)
             .padding(paddingValues),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         LoginForm(loginUIState)
     }
@@ -72,20 +72,20 @@ fun LoginForm(loginUIState: LoginUIState = LoginUIState()) {
     Column(
         Modifier
             .fillMaxWidth()
-            .padding(10.dp)
+            .padding(10.dp),
     ) {
         OutlinedTextField(
             enabled = !loginUIState.isLoading,
             value = loginUIState.username,
             onValueChange = loginUIState.onChangeUsername,
             label = { Text("Username") },
-            modifier = Modifier.fillMaxWidth().testTag("UsernameTextField")
+            modifier = Modifier.fillMaxWidth().testTag("UsernameTextField"),
         )
         AnimatedVisibility(visible = loginUIState.errorUsername.isNotEmpty()) {
             Text(
                 text = loginUIState.errorUsername,
                 color = Color.Red,
-                modifier = Modifier.testTag("UsernameErrorText")
+                modifier = Modifier.testTag("UsernameErrorText"),
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
@@ -94,20 +94,20 @@ fun LoginForm(loginUIState: LoginUIState = LoginUIState()) {
             value = loginUIState.password,
             onValueChange = loginUIState.onChangePassword,
             label = { Text("Password") },
-            modifier = Modifier.fillMaxWidth().testTag("PasswordTextField")
+            modifier = Modifier.fillMaxWidth().testTag("PasswordTextField"),
         )
         AnimatedVisibility(visible = loginUIState.errorPassword.isNotEmpty()) {
             Text(
                 text = loginUIState.errorPassword,
                 color = Color.Red,
-                modifier = Modifier.testTag("PasswordErrorText")
+                modifier = Modifier.testTag("PasswordErrorText"),
             )
         }
         Spacer(modifier = Modifier.height(10.dp))
         OutlinedButton(
             enabled = !loginUIState.isLoading,
             onClick = loginUIState.onLogin,
-            modifier = Modifier.fillMaxWidth().testTag("LoginButton")
+            modifier = Modifier.fillMaxWidth().testTag("LoginButton"),
         ) {
             if (loginUIState.isLoading) {
                 CircularProgressIndicator()

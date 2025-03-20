@@ -4,8 +4,11 @@ import com.example.challenge.data.models.ErrorType
 import com.example.challenge.data.models.SuccessResponse
 
 class ApiService {
-    fun login(username: String, password: String): Either<SuccessResponse<Int?>, ErrorType> {
-        return when (username) {
+    fun login(
+        username: String,
+        password: String,
+    ): Either<SuccessResponse<Int?>, ErrorType> =
+        when (username) {
             "user" -> {
                 Either.Left(SuccessResponse(result = 1))
             }
@@ -22,5 +25,4 @@ class ApiService {
                 Either.Right(ErrorType.UNKNOWN_ERROR)
             }
         }
-    }
 }

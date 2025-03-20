@@ -5,5 +5,8 @@ import com.example.challenge.data.models.ErrorType
 import com.example.challenge.data.models.SuccessResponse
 
 interface LoginRepository {
-    fun login(username: String, password: String): Either<SuccessResponse<Int?>, ErrorType>
+    fun login(
+        username: String,
+        password: String,
+    ): Either<SuccessResponse<Int?>, ErrorType>
 }

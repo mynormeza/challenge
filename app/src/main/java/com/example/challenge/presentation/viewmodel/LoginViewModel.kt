@@ -14,16 +14,16 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class LoginViewModel constructor(
-    private val loginUseCase: LoginUseCase = LoginUseCaseImpl()
+    private val loginUseCase: LoginUseCase = LoginUseCaseImpl(),
 ) : ViewModel() {
-
-    private val _uiState: MutableStateFlow<LoginUIState> = MutableStateFlow(
-        LoginUIState(
-            onChangeUsername = ::onChangeUsername,
-            onChangePassword = ::onChangePassword,
-            onLogin = ::onLogin,
+    private val _uiState: MutableStateFlow<LoginUIState> =
+        MutableStateFlow(
+            LoginUIState(
+                onChangeUsername = ::onChangeUsername,
+                onChangePassword = ::onChangePassword,
+                onLogin = ::onLogin,
+            ),
         )
-    )
     val uiState: StateFlow<LoginUIState> = _uiState.asStateFlow()
 
     private fun onChangeUsername(username: String) {
@@ -56,7 +56,7 @@ class LoginViewModel constructor(
                         it.copy(
                             errorUsername = "Username is required",
                             errorPassword = "Password is required",
-                            isLoading = false
+                            isLoading = false,
                         )
                     }
                 }
@@ -82,19 +82,20 @@ class LoginViewModel constructor(
                             it.copy(result = "Login success")
                         }
                     }, {
-                        val msgError = when (it) {
-                            ErrorType.WRONG_CREDENTIALS -> {
-                                "Wrong credentials"
-                            }
+                        val msgError =
+                            when (it) {
+                                ErrorType.WRONG_CREDENTIALS -> {
+                                    "Wrong credentials"
+                                }
 
-                            ErrorType.INTERNAL_SERVER_ERROR -> {
-                                "Internal server error"
-                            }
+                                ErrorType.INTERNAL_SERVER_ERROR -> {
+                                    "Internal server error"
+                                }
 
-                            ErrorType.UNKNOWN_ERROR -> {
-                                "Unknown error"
+                                ErrorType.UNKNOWN_ERROR -> {
+                                    "Unknown error"
+                                }
                             }
-                        }
                         _uiState.update {
                             it.copy(result = msgError, isLoading = false)
                         }
@@ -107,5 +108,4 @@ class LoginViewModel constructor(
             }
         }
     }
-
 }
