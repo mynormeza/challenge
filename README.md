@@ -9,8 +9,11 @@ I used the Arrow library for error/success response handling. Because of this, I
 
 2. **Introduce Coroutines**:
    Inside of use case implementations, coroutines can be introduced to allow background executions of network requests.
+   
+3. **Lint hook**:
+   Add a hook for lint/kotlin formatter to trigger on each commit
 
-3. **Modularize the Project**:
+4. **Modularize the Project**:
    As the project gets bigger, packages can be divided into layers as Android modules following clean architecture recommendations:
    - **Domain Module**: Contains use cases and global models to include in UI states.
    - **Repository Module**: Includes network-related components.
