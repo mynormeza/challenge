@@ -8,7 +8,7 @@ I used the Arrow library for error/success response handling. Because of this, I
    Instead of manually creating objects, Hilt can be used for dependency injection.
 
 2. **Introduce Coroutines**:
-   Inside of use case implementations, coroutines can be introduced to allow background executions of network requests.
+   Inside of usecase implementations, coroutines can be introduced to allow background executions of network requests.
    
 3. **Lint hook**:
    Add a hook for lint/kotlin formatter to trigger on each commit
